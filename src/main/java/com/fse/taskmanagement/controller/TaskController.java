@@ -13,7 +13,8 @@ import com.fse.taskmanagement.model.Task;
 import com.fse.taskmanagement.model.TaskDto;
 import com.fse.taskmanagement.service.TaskService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8088"})
+//@CrossOrigin
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -21,6 +22,7 @@ public class TaskController {
 	@Autowired
     private TaskService taskService;
 
+	@CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping
     public ApiResponse<Task> saveTask(@RequestBody TaskDto task){
         return new ApiResponse<>(HttpStatus.OK.value(), "Task saved successfully.",taskService.save(task));
