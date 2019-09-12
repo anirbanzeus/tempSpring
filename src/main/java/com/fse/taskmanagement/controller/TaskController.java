@@ -13,7 +13,7 @@ import com.fse.taskmanagement.model.Task;
 import com.fse.taskmanagement.model.TaskDto;
 import com.fse.taskmanagement.service.TaskService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {

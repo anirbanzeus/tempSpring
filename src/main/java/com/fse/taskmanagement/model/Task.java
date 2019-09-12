@@ -2,11 +2,13 @@ package com.fse.taskmanagement.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +20,7 @@ public class Task {
 	private int taskId;
 	
 	@Column
-	private int parentTaskID;
+	private String parentTask;
 	
 	@Column
 	private String taskName;
@@ -31,6 +33,9 @@ public class Task {
 	
 	@Column
 	private Date endDate;
+	
+	@ManyToOne(cascade = {CascadeType.ALL})
+    private Parent parent;
 
 	public int getTaskId() {
 		return taskId;
@@ -40,12 +45,12 @@ public class Task {
 		this.taskId = taskId;
 	}
 
-	public int getParentTaskID() {
-		return parentTaskID;
+	public String getParentTask() {
+		return parentTask;
 	}
 
-	public void setParentTaskID(int parentTaskID) {
-		this.parentTaskID = parentTaskID;
+	public void setParentTask(String parentTask) {
+		this.parentTask = parentTask;
 	}
 
 	public String getTaskName() {
@@ -78,6 +83,14 @@ public class Task {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
 	}
 
 }

@@ -6,7 +6,7 @@ public class TaskDto {
 	
 private int taskId;
 	
-	private int parentTaskID;
+	private String parentTask;
 	private String taskName;
 	private String priority;
 	private Date startDate;
@@ -17,11 +17,11 @@ private int taskId;
 	public void setTaskId(int taskId) {
 		this.taskId = taskId;
 	}
-	public int getParentTaskID() {
-		return parentTaskID;
+	public String getParentTask() {
+		return parentTask;
 	}
-	public void setParentTaskID(int parentTaskID) {
-		this.parentTaskID = parentTaskID;
+	public void setParentTask(String parentTask) {
+		this.parentTask = parentTask;
 	}
 	public String getTaskName() {
 		return taskName;

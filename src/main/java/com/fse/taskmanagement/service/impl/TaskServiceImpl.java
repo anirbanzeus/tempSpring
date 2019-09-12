@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fse.taskmanagement.dao.ParentDao;
 import com.fse.taskmanagement.dao.TaskDao;
+import com.fse.taskmanagement.model.Parent;
 import com.fse.taskmanagement.model.Task;
 import com.fse.taskmanagement.model.TaskDto;
 import com.fse.taskmanagement.service.TaskService;
@@ -16,13 +18,26 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	private TaskDao taskDao;
 	
+	@Autowired
+	private ParentDao parentDao;
+	
 	@Override
     public Task save(TaskDto task) {
+		
 		Task newTask = new Task();
 		newTask.setEndDate(task.getEndDate());
 		newTask.setStartDate(task.getStartDate());
 		newTask.setPriority(task.getPriority());
 		newTask.setTaskName(task.getTaskName());
+		Parent existingParent = parentDao.findByparentTaskName(task.getParentTask());
+		if(existingParent != null) {
+			newTask.getParent().setParentTakeName(existingParent.getParentTaskName());
+		}else {
+			Parent parent  = new Parent();
+			parent.setParentTakeName(task.getParentTask());
+			newTask.setParent(parent);
+		}
+		
         return taskDao.save(newTask);
     }
 
