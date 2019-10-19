@@ -8,7 +8,9 @@ import com.fse.taskmanagement.model.TaskDto;
 public interface TaskService {
 	
 	Task save(TaskDto user);
+	
     List<Task> findAll();
+    
     void delete(int id);
 
     Task findOne(String username);

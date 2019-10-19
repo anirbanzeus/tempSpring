@@ -1,5 +1,6 @@
 package com.fse.taskmanagement.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class TaskServiceImpl implements TaskService {
 		newTask.setTaskName(task.getTaskName());
 		Parent existingParent = parentDao.findByparentTaskName(task.getParentTask());
 		if(existingParent != null) {
-			newTask.getParent().setParentTakeName(existingParent.getParentTaskName());
+			//newTask.getParent().setParentTakeName(existingParent.getParentTaskName());
+			newTask.setParent(existingParent);
 		}else {
 			Parent parent  = new Parent();
 			parent.setParentTakeName(task.getParentTask());
@@ -43,8 +45,9 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public List<Task> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Task> list = new ArrayList<Task>();
+ 		taskDao.findAll().iterator().forEachRemaining(list::add);
+		return list;
 	}
 
 	@Override
