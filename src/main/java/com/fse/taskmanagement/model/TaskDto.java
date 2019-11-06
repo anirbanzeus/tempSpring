@@ -11,6 +11,45 @@ private int taskId;
 	private String priority;
 	private Date startDate;
 	private Date endDate;
+	private boolean parent;
+	private String projectName;
+	private String status;
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/**
+	 * @return the projectName
+	 */
+	public String getProjectName() {
+		return projectName;
+	}
+	/**
+	 * @param projectName the projectName to set
+	 */
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	/**
+	 * @return the isParent
+	 */
+	public boolean isParent() {
+		return parent;
+	}
+	/**
+	 * @param isParent the isParent to set
+	 */
+	public void setParent(boolean parent) {
+		this.parent = parent;
+	}
 	public int getTaskId() {
 		return taskId;
 	}

@@ -35,20 +35,41 @@ public class TaskController {
         return new ApiResponse<>(HttpStatus.OK.value(), "All tasks retreived successfully.",taskService.findAll());
     }
     
+    @GetMapping("scope")
+    public ApiResponse<Task> getParentTask(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "All parent tasks retreived successfully.",taskService.findAllParent());
+    }
+    
+    @GetMapping("fetch/{projectName}")
+    public ApiResponse<Task> getTaskByProjectName(@PathVariable String projectName){
+        return new ApiResponse<>(HttpStatus.OK.value(), "All tasks retreived successfully.",taskService.findAllTasksForProject(projectName));
+    }
+    
     @GetMapping("/{id}")
     public ApiResponse<Task> getTask(@PathVariable int id){
         return new ApiResponse<>(HttpStatus.OK.value(), "Task retreived successfully.",taskService.findById(id));
     }
     
-    @PutMapping("/{id}")
+    @SuppressWarnings("rawtypes")
+	@PutMapping("/{id}")
     public ApiResponse update(@RequestBody TaskDto userDto) {
         return new ApiResponse<>(HttpStatus.OK.value(), "Task updated successfully.",taskService.update(userDto));
     }
+    
+    
+    @SuppressWarnings("rawtypes")
+	@PutMapping("complete/{id}")
+    public ApiResponse updateToComplete(@RequestBody TaskDto userDto, @PathVariable int id) {
+       userDto.setStatus("Complete");
+       userDto.setTaskId(id);
+        return new ApiResponse<>(HttpStatus.OK.value(), "Task completed successfully.",taskService.update(userDto));
+    }
 
-    @DeleteMapping("/{id}")
+    @SuppressWarnings("rawtypes")
+	@DeleteMapping("/{id}")
     public ApiResponse delete(@PathVariable int id) {
     	taskService.delete(id);
-        return new ApiResponse<>(HttpStatus.OK.value(), "Task fetched successfully.", null);
+        return new ApiResponse<>(HttpStatus.OK.value(), "Task deleted successfully.", null);
     }
 
 }

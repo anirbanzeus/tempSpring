@@ -7,13 +7,15 @@ import com.fse.taskmanagement.model.TaskDto;
 
 public interface TaskService {
 	
-	Task save(TaskDto user);
+	Task save(TaskDto task);
 	
     List<Task> findAll();
     
+    List<Task> findAllParent();
+    
+    List<Task> findAllTasksForProject(String projectName);
+    
     void delete(int id);
-
-    Task findOne(String username);
 
     Task findById(int id);
 

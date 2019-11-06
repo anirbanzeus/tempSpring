@@ -2,14 +2,14 @@ package com.fse.taskmanagement.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "task")
@@ -29,13 +29,67 @@ public class Task {
 	private String priority;
 	
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
-    private Parent parent;
+	@Column
+	public String projectName;
+	
+	@Column
+	public int parentId;
+	
+	@Column
+	private boolean isParent;
+	
+	@Column
+	private String status;
+	
+	
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the isParent
+	 */
+	public boolean isParent() {
+		return isParent;
+	}
+
+	/**
+	 * @param isParent the isParent to set
+	 */
+	public void setParent(boolean isParent) {
+		this.isParent = isParent;
+	}
+
+	/*@ManyToOne(cascade = {CascadeType.ALL})
+    private Parent parent;*/
+	
+	/*@ManyToOne(cascade = {CascadeType.ALL})
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}*/
 
 	public int getTaskId() {
 		return taskId;
@@ -85,12 +139,40 @@ public class Task {
 		this.endDate = endDate;
 	}
 
-	public Parent getParent() {
+	/*public Parent getParent() {
 		return parent;
 	}
 
 	public void setParent(Parent parent) {
 		this.parent = parent;
+	}*/
+
+	/**
+	 * @return the projectId
+	 */
+	public String getProjectName() {
+		return projectName;
+	}
+
+	/**
+	 * @param projectId the projectId to set
+	 */
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	/**
+	 * @return the parentId
+	 */
+	public int getParentId() {
+		return parentId;
+	}
+
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 
 }

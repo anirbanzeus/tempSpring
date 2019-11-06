@@ -11,6 +11,8 @@ public class TaskManagementApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		TaskManagementApplication.main(new String[] {});
+		
 	}
 
 }
